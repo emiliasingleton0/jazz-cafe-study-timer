@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jazz Café</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="opening" class="opening">
+    <div class="open-line">the café lights are coming on...</div>
+  </div>
+
+  <main id="app">
+    <button id="backBtn" class="back-btn hidden">← back</button>
+
+    <section id="welcome" class="screen active bg-welcome">
+      <div class="welcome-card fade-in">
+        <p class="eyebrow">open late • vinyl only</p>
+        <h1>welcome to<br>jazz café</h1>
+        <p class="lead">a cozy space to study, focus, and unwind with the sounds of jazz.</p>
+        <button class="primary" data-go="name">begin your session →</button>
+      </div>
+    </section>
+
+    <section id="name" class="screen bg-club note-screen">
+      <div class="sticky-note compact-note">
+        <div class="note-inner">
+          <h2 class="type" data-text="what should we call you?">what should we call you?</h2>
+          <input id="nameInput" class="text-input" placeholder="type your name..." autocomplete="off" />
+          <button class="primary" data-go="places">next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="places" class="screen bg-club scroll-screen">
+      <div class="paper-panel places-panel">
+        <p class="eyebrow">jazz passport</p>
+        <h2>choose a place</h2>
+        <p class="sub">The bartender slides over a crate of records from wherever you choose.</p>
+        <div id="placeGrid" class="place-grid"></div>
+      </div>
+    </section>
+
+    <section id="placeDetail" class="screen bg-club scroll-screen">
+      <div class="paper-panel detail-panel">
+        <p class="eyebrow">jazz passport</p>
+        <div class="detail-layout">
+          <img id="detailImg" class="detail-img" alt="city" />
+          <div class="detail-copy">
+            <h2 id="detailTitle"></h2>
+            <h3>origin</h3>
+            <p id="detailOrigin"></p>
+            <h3>fun fact</h3>
+            <p id="detailFact"></p>
+            <h3>artists / mood</h3>
+            <p id="detailArtists"></p>
+            <button class="primary" data-go="drinks">choose this place →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="drinks" class="screen bg-dance scroll-screen">
+      <div class="paper-panel drinks-panel">
+        <p class="eyebrow">the bar is open</p>
+        <h2>choose a drink</h2>
+        <p class="sub">something to sip while the records spin.</p>
+        <div id="drinkGrid" class="drink-grid"></div>
+        <button class="primary" data-go="stranger">continue →</button>
+      </div>
+    </section>
+
+    <section id="stranger" class="screen bg-dance note-screen">
+      <div class="sticky-note story-note">
+        <div class="note-inner lower">
+          <h2 class="type" data-text="a stranger offered to buy you a drink.">a stranger offered to buy you a drink.</h2>
+          <p>do you say yes?</p>
+          <div class="button-row">
+            <button id="sureBtn" class="primary">sure</button>
+            <button id="noBtn" class="ghost">no thank you...</button>
+          </div>
+          <p id="strangerResult" class="result-text"></p>
+          <button id="recordBtn" class="primary hidden" data-go="recordCrate">play record →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="recordCrate" class="screen bg-club note-screen">
+      <div class="sticky-note record-note">
+        <div class="note-inner lower">
+          <p class="eyebrow">the bartender smiles</p>
+          <h2 id="crateTitle">record crate</h2>
+          <p id="crateStory" class="crate-story"></p>
+          <img id="playlistThumb" class="playlist-thumb" alt="playlist cover" />
+          <button id="playRecordBtn" class="primary">play record →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="session" class="screen bg-club session-screen">
+      <div class="session-wrap">
+        <div class="turntable">
+          <div id="record" class="record-disc">
+            <img id="recordCenter" alt="album art" />
+          </div>
+          <p id="nowPlaying" class="now-playing">now playing</p>
+        </div>
+        <div class="player-card sticky-note small-note">
+          <div class="note-inner lower session-note-inner">
+            <p class="eyebrow">focus session</p>
+            <h2>tonight i am<br>focusing on...</h2>
+            <input id="focusInput" class="focus-input" placeholder="write your focus here..." />
+            <div id="timer" class="timer">25:00</div>
+            <div class="button-row">
+              <button id="startTimer" class="primary">start</button>
+              <button id="resetTimer" class="ghost">reset</button>
+            </div>
+            <div id="youtubeHolder" class="youtube-holder"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
