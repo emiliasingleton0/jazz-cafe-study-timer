@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="opening" class="opening">
-    <div class="open-line">the café lights are coming on...</div>
+    <div class="open-line"><span>the café sign flickers on...</span><span>a bell rings softly...</span><span>welcome in.</span></div>
   </div>
 
   <main id="app">
@@ -74,7 +74,7 @@
     <section id="stranger" class="screen bg-dance note-screen">
       <div class="sticky-note story-note">
         <div class="note-inner lower">
-          <h2 class="type" data-text="a stranger offered to buy you a drink.">a stranger offered to buy you a drink.</h2>
+          <h2 class="type" data-text="a regular offered to buy your table a drink.">a regular offered to buy your table a drink.</h2>
           <p>do you say yes?</p>
           <div class="button-row">
             <button id="sureBtn" class="primary">sure</button>
@@ -101,10 +101,14 @@
     <section id="session" class="screen bg-club session-screen">
       <div class="session-wrap">
         <div class="turntable">
-          <div id="record" class="record-disc">
-            <img id="recordCenter" alt="album art" />
+          <div class="turntable-deck">
+            <div id="record" class="record-disc">
+              <img id="recordCenter" alt="album art" />
+            </div>
+            <div class="tonearm" aria-hidden="true"><span></span></div>
           </div>
           <p id="nowPlaying" class="now-playing">now playing</p>
+          <div class="track-meta"><strong id="trackTitle">waiting for the needle</strong><span id="trackArtist">press start to begin</span></div>
         </div>
         <div class="player-card sticky-note small-note">
           <div class="note-inner lower session-note-inner">
@@ -122,6 +126,7 @@
       </div>
     </section>
   </main>
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
 </html>
