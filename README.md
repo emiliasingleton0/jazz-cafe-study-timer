@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="assets/demo/jazz-cafe-demo.gif" width="900">
+</p>
+
 # Jazz Café
 
 Jazz Café is an interactive web experience designed for studying, reading, or simply background noise.
