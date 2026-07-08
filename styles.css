@@ -209,3 +209,66 @@ h1{font-size:clamp(3rem,8vw,5.8rem);line-height:.9;margin:0 0 24px}h2{font-size:
   .turntable-deck{width:min(350px,78vw)}
   .tonearm{right:-10%;top:18%;width:48%}
 }
+
+/* v2 local update: welcome back, passport progress, ambience control */
+.welcome-back{
+  margin:0 auto 16px;
+  max-width:620px;
+  color:#6f221f;
+  font-family:'Courier Prime', monospace;
+  font-size:clamp(.95rem,1.7vw,1.12rem);
+  line-height:1.45;
+}
+.passport-book{
+  margin:28px auto 0;
+  padding:18px;
+  border:1px dashed rgba(80,40,24,.35);
+  background:rgba(255,248,232,.45);
+  border-radius:10px;
+  text-align:left;
+}
+.passport-book .eyebrow{margin-bottom:10px;}
+.passport-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.passport-chip{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid rgba(65,40,29,.3);
+  color:#4e352c;
+  background:rgba(255,255,255,.22);
+  border-radius:999px;
+  padding:8px 11px;
+  font-family:'Courier Prime', monospace;
+  font-size:.9rem;
+}
+.passport-chip.stamped{
+  color:var(--wine);
+  border-color:rgba(141,21,29,.65);
+  background:rgba(141,21,29,.09);
+  transform:rotate(-1.5deg);
+}
+.passport-stats{
+  margin:14px 0 0;
+  color:#60443a;
+  font-size:.96rem;
+}
+.ambience-btn{
+  margin-top:4px;
+  font-size:.92rem;
+  padding:10px 16px;
+}
+.music-playing .turntable-deck::after{
+  content:"";
+  position:absolute;
+  inset:8%;
+  border-radius:50%;
+  box-shadow:0 0 60px rgba(230,176,102,.13), inset 0 0 40px rgba(255,240,210,.04);
+  pointer-events:none;
+}
+@media(max-width:560px){
+  .passport-book{padding:14px;}
+  .passport-chip{font-size:.8rem;padding:7px 9px;}
+}

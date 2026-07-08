@@ -15,7 +15,12 @@ let state = {
   lastNeedleDrop: false,
   visited: JSON.parse(localStorage.getItem('jazzCafeVisited') || '[]'),
   name: localStorage.getItem('jazzCafeName') || '',
-  focus: localStorage.getItem('jazzCafeFocus') || ''
+  focus: localStorage.getItem('jazzCafeFocus') || '',
+  sessions: Number(localStorage.getItem('jazzCafeSessions') || '0'),
+  totalMinutes: Number(localStorage.getItem('jazzCafeTotalMinutes') || '0'),
+  ambienceOn: false,
+  audioCtx: null,
+  ambienceNodes: null
 };
 
 const playlists = {
@@ -58,6 +63,33 @@ const imageFiles = {
   'sapporo': 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Toho_Eiga_Theater%2C_Sapporo_%281938%29_-_momat.jpg'
 };
 
+
+function updateWelcome() {
+  const el = document.getElementById('welcomeBack');
+  if (!el) return;
+  const name = state.name || localStorage.getItem('jazzCafeName') || '';
+  const lastCity = localStorage.getItem('jazzCafeLastCity') || '';
+  const parts = [];
+  if (name) parts.push(`welcome back, ${name}.`);
+  if (lastCity) parts.push(`your last table was in ${lastCity}.`);
+  if (state.sessions > 0) parts.push(`${state.sessions} session${state.sessions === 1 ? '' : 's'} completed.`);
+  el.textContent = parts.join(' ');
+}
+
+function renderPassport() {
+  const list = document.getElementById('passportList');
+  const stats = document.getElementById('passportStats');
+  if (!list) return;
+  list.innerHTML = '';
+  places.forEach(p => {
+    const item = document.createElement('span');
+    item.className = state.visited.includes(p.id) ? 'passport-chip stamped' : 'passport-chip';
+    item.textContent = `${state.visited.includes(p.id) ? '✓' : '□'} ${cityTitle(p)}`;
+    list.appendChild(item);
+  });
+  if (stats) stats.textContent = `${state.visited.length}/${places.length} cities visited • ${state.totalMinutes} focus minutes`;
+}
+
 const places = [
   {id:'new-orleans', playlist:'new-orleans', name:'new orleans, usa', mood:'birthplace of jazz', img:imageFiles['new-orleans'], origin:'New Orleans is widely considered the birthplace of jazz, where blues, ragtime, brass bands, and street parades blended into something new.', fact:'Many early jazz musicians learned by playing parades, dances, and neighborhood gatherings.', artists:'Louis Armstrong • Jelly Roll Morton • Sidney Bechet'},
   {id:'harlem', playlist:'nyc', name:'harlem / nyc, usa', mood:'small clubs & big nights', img:imageFiles['harlem'], origin:'Harlem helped shape swing, bebop, and late-night jazz club culture in New York City.', fact:'Harlem venues helped make jazz feel glamorous, danceable, experimental, and alive.', artists:'Duke Ellington • Billie Holiday • Thelonious Monk'},
@@ -89,6 +121,7 @@ function show(id, push = true) {
 
 function goBack() {
   stopMusic();
+  stopAmbience();
   pauseTimerOnly();
   const prev = historyStack.pop() || 'welcome';
   show(prev, false);
@@ -112,6 +145,7 @@ function saveVisited(id) {
     state.visited.push(id);
     localStorage.setItem('jazzCafeVisited', JSON.stringify(state.visited));
   }
+  renderPassport();
 }
 
 function renderPlaces() {
@@ -132,6 +166,7 @@ function renderPlaces() {
 function selectPlace(id) {
   const p = places.find(x => x.id === id);
   state.place = p;
+  localStorage.setItem('jazzCafeLastCity', cityTitle(p));
   saveVisited(id);
   renderPlaces();
   const detailImg = document.getElementById('detailImg');
@@ -168,6 +203,7 @@ document.getElementById('focusInput').value = state.focus;
 document.getElementById('nameInput').addEventListener('input', e => {
   state.name = e.target.value.trim();
   localStorage.setItem('jazzCafeName', state.name);
+  updateWelcome();
 });
 document.getElementById('focusInput').addEventListener('input', e => {
   state.focus = e.target.value.trim();
@@ -303,6 +339,50 @@ function updateTrackText(title, artist) {
   document.getElementById('trackArtist').textContent = artist;
 }
 
+
+function startAmbience() {
+  if (state.ambienceOn) return;
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+  if (!state.audioCtx) state.audioCtx = new AudioContext();
+  const ctx = state.audioCtx;
+  const bufferSize = ctx.sampleRate * 2;
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.035;
+  const noise = ctx.createBufferSource();
+  noise.buffer = buffer;
+  noise.loop = true;
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.value = 900;
+  const gain = ctx.createGain();
+  gain.gain.value = 0.045;
+  noise.connect(filter).connect(gain).connect(ctx.destination);
+  noise.start();
+  state.ambienceNodes = { noise, filter, gain };
+  state.ambienceOn = true;
+  const btn = document.getElementById('ambienceBtn');
+  if (btn) btn.textContent = 'café ambience on';
+}
+
+function stopAmbience() {
+  if (state.ambienceNodes?.noise) {
+    try { state.ambienceNodes.noise.stop(); } catch(e) {}
+  }
+  state.ambienceNodes = null;
+  state.ambienceOn = false;
+  const btn = document.getElementById('ambienceBtn');
+  if (btn) btn.textContent = 'café ambience off';
+}
+
+function toggleAmbience() {
+  if (state.ambienceOn) stopAmbience();
+  else startAmbience();
+}
+
+document.getElementById('ambienceBtn')?.addEventListener('click', toggleAmbience);
+
 const timerEl = document.getElementById('timer');
 function renderTimer() {
   const m = String(Math.floor(state.timer / 60)).padStart(2, '0');
@@ -333,6 +413,13 @@ document.getElementById('startTimer').onclick = () => {
     } else {
       pauseTimerOnly();
       stopMusic();
+      stopAmbience();
+      state.sessions += 1;
+      state.totalMinutes += 25;
+      localStorage.setItem('jazzCafeSessions', String(state.sessions));
+      localStorage.setItem('jazzCafeTotalMinutes', String(state.totalMinutes));
+      updateWelcome();
+      renderPassport();
       showClosingTime();
     }
   }, 1000);
@@ -341,6 +428,7 @@ document.getElementById('startTimer').onclick = () => {
 document.getElementById('resetTimer').onclick = () => {
   pauseTimerOnly();
   stopMusic();
+  stopAmbience();
   state.timer = 25 * 60;
   renderTimer();
 };
@@ -360,3 +448,5 @@ function showClosingTime() {
 renderPlaces();
 renderDrinks();
 renderTimer();
+updateWelcome();
+renderPassport();

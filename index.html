@@ -18,6 +18,7 @@
       <div class="welcome-card fade-in">
         <p class="eyebrow">open late • vinyl only</p>
         <h1>welcome to<br>jazz café</h1>
+        <p id="welcomeBack" class="welcome-back"></p>
         <p class="lead">a cozy space to study, focus, and unwind with the sounds of jazz.</p>
         <button class="primary" data-go="name">begin your session →</button>
       </div>
@@ -39,6 +40,11 @@
         <h2>choose a place</h2>
         <p class="sub">The bartender slides over a crate of records from wherever you choose.</p>
         <div id="placeGrid" class="place-grid"></div>
+        <div class="passport-book" aria-label="Jazz passport progress">
+          <p class="eyebrow">passport</p>
+          <div id="passportList" class="passport-list"></div>
+          <p id="passportStats" class="passport-stats"></p>
+        </div>
       </div>
     </section>
 
@@ -120,6 +126,7 @@
               <button id="startTimer" class="primary">start</button>
               <button id="resetTimer" class="ghost">reset</button>
             </div>
+            <button id="ambienceBtn" class="ghost ambience-btn" type="button">café ambience off</button>
             <div id="youtubeHolder" class="youtube-holder"></div>
           </div>
         </div>
