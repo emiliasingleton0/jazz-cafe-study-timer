@@ -5,9 +5,7 @@
 
 # Jazz Café
 
-Jazz Café is an interactive web experience designed for studying, reading, or simply background noise.
-
-Rather than opening a traditional study timer, users are welcomed into a warm jazz club where they choose a destination, discover curated records, enjoy a drink, and settle into a focused work session. Inspired by jazz cafés and listening bars around the world, the project uses its minimalist interface design to create an immersive atmosphere that feels just as enjoyable to leave open in the background as it is to actively use. Each destination introduces users to a different jazz culture through playlists, historical information, and a unique visual atmosphere.
+Jazz Café is an interactive web experience designed for studying, reading, or simply background noise. Rather than opening a traditional study timer, people are welcomed into a warm jazz club where they choose a destination, discover curated records, enjoy a drink, and settle into a focused work session. Inspired by jazz cafés and listening bars around the world, the project uses its minimalist interface design to create an immersive atmosphere that feels just as enjoyable to leave open in the background as it is to actively use. Each destination introduces users to a different jazz culture through playlists, historical information, and a unique and fun atmosphere.
 
 ## Features
 
