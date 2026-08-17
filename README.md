@@ -22,7 +22,7 @@ Jazz Café is an interactive web experience designed for studying, reading, or s
 
 ## Inspiration
 
-The biggest inspiration came from my trip to Japan in 2025, where my friends and I visited Hachigatsu no Kujira in Shibuya. The bar is known for its extensive cocktail menu inspired by music and film. If the bartender recognized the movie you requested, they would create a cocktail based on its atmosphere and themes. That experience inspired the storytelling elements throughout Jazz Café, where drinks, music, and locations all contribute to creating an experience and curating a vibe, which I love.
+The biggest inspiration came from my trip to Japan in 2025, where my friends and I visited Hachigatsu no Kujira in Shibuya. The bar is known for its extensive cocktail menu inspired by music and film. If the bartender recognized the movie you requested, they would create a cocktail based on its atmosphere and themes. That experience inspired the storytelling elements throughout Jazz Café, where drinks, music, and locations all contribute to creating an experience and curating a vibe, which I love!
 
 ## Future Improvements(?)
 
