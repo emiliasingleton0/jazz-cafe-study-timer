@@ -37,7 +37,7 @@ The biggest inspiration came from my trip to Japan in 2025, where my friends and
 - Mobile-first redesign
 - Accessibility improvements
 
-## Technologies Used
+## Used
 
 - HTML
 - CSS
@@ -49,10 +49,3 @@ The biggest inspiration came from my trip to Japan in 2025, where my friends and
 
 https://emiliasingleton0.github.io/jazz-cafe-study-timer/
 
-## Author
-
-Emilia Singleton
-
-Information Technology Student
-
-University of Central Florida
