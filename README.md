@@ -17,8 +17,6 @@ Jazz Café is an interactive web experience designed for studying, reading, or s
 - Record crate-inspired music selection
 - Focus note for study sessions
 - Built-in study timer
-- Vintage paper textures and typewriter animations
-- Warm, minimalist visual design
 
 ## Inspiration
 
