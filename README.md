@@ -18,22 +18,8 @@ Jazz Café is an interactive web experience designed for studying, reading, or s
 - Focus note for study sessions
 - Built-in study timer
 
-## Inspiration
 
-The biggest inspiration came from my trip to Japan in 2025, where my friends and I visited Hachigatsu no Kujira in Shibuya. The bar is known for its extensive cocktail menu inspired by music and film. If the bartender recognized the movie you requested, they would create a cocktail based on its atmosphere and themes. That experience inspired the storytelling elements throughout Jazz Café, where drinks, music, and locations all contribute to creating an experience and curating a vibe, which I love!
-
-## Future Improvements(?)
-
-- Spotify Premium integration
-- Dynamic album artwork
-- Rotating vinyl using actual album covers
-- Ambient café sound effects
-- "Closing time" animation when the study session ends
-- Jazz passport system to track visited cities
-- Save user preferences with LocalStorage
-- Additional cities and curated playlists
-- Mobile-first redesign
-- Accessibility improvements
+The biggest inspiration came from my trip to Japan in 2025, where my friends and I visited Hachigatsu no Kujira in Shibuya. The bar is known for its extensive cocktail menu inspired by music and film. If the bartender recognized the movie you requested, they would create a cocktail based on its atmosphere and themes. That experience inspired the storytelling elements throughout Jazz Café, where drinks, music, and locations all contribute to creating an experience and curating a vibe.
 
 ## Used
 
@@ -42,8 +28,4 @@ The biggest inspiration came from my trip to Japan in 2025, where my friends and
 - JavaScript
 - YouTube Playlist Integration
 - GitHub Pages
-
-## Live Demo
-
-https://emiliasingleton0.github.io/jazz-cafe-study-timer/
 
